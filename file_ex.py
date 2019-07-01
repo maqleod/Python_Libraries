@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 '''
+python2
+
 This module provides a class that can be built
 based off of a file object resulting from an 
 open() call or simply a file path as a string
