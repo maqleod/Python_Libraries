@@ -220,3 +220,15 @@ def hosts():
             return response
     except Exception as e:
         return e
+
+
+def sockets():
+    '''Gets socket list from netstat
+    
+    Args:
+        None
+        
+    Returns:
+        sockets (list of tuples): output if success, err if failed
+    '''
+    pass

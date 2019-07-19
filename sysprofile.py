@@ -13,8 +13,8 @@ currently only implemented for *nix
 # built-ins
 import socket
 import platform
-import os
 # internal
+import core
 import net
 import fs
 import admin
@@ -26,6 +26,7 @@ class SysPro():
         self.ps = admin.processes()
         self.users = admin.users()
         self.current_user = admin.current_user()
+        self.system_time = admin.system_time()
         # hardware
         self.machine = platform.machine()
         self.version = platform.version()
@@ -33,8 +34,8 @@ class SysPro():
         self.uname = platform.uname()
         self.system = platform.system()
         self.processor = platform.processor()
-        self.mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
-        self.mem_gib = self.mem_bytes/(1024.**3)
+        self.mem_stats = core.mem_stats()
+        self.cpu_usage = "" # core.cpu_usage()
         # network
         self.ifaces = net.ifaces()
         self.ips = net.ips()
@@ -42,17 +43,15 @@ class SysPro():
         self.arp = net.arp()
         self.dns = net.dns()
         self.hosts = net.hosts()
+        self.sockets = "" # net
+        self.net_stats = "" # net
         # filesystem
         self.mounts = fs.mounts()
         self.filesystems = fs.filesystems()
-        # stats - these need to use @property to update each time they're accessed
-        #self.cpu_usage = ""
-        #self.mem_usage = ""
-        #self.net_throughput = ""
-        #self.system_time = ""
+        self.disks = fs.disks()
 
     def update(self):
-        '''Updates system info
+        '''Updates volatile system info
 
         Args:
             None.
@@ -61,4 +60,10 @@ class SysPro():
             None.
 
         '''
-        pass
+        self.ps = admin.processes()
+        self.users = admin.users()
+        self.system_time = admin.system_time()
+        self.mem_stats = core.mem_stats()
+        self.cpu_usage = "" # core.cpu_usage()
+        self.arp = net.arp()
+        self.filesystems = fs.filesystems()

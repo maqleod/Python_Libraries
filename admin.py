@@ -9,6 +9,7 @@ currently only implemented for *nix
 '''
 
 from datetime import timedelta
+import time
 import misc
 
 def uptime():
@@ -93,3 +94,8 @@ def current_user():
     else:
         response = output.rstrip()
     return response
+
+
+def system_time():
+    localtime = time.ascitime(time.time())
+    return localtime
