@@ -2,6 +2,7 @@
 Collection of libraries for personal use and practice.
 
 admin: contains methods for standard nix-based administration
+core: contains methods to get information about system resources
 fs: contains methods to get information about system's file system
 net: contains methods to get information about a system's network config
 misc: contains miscellaneous methods that other modules use
